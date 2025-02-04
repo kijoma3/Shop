@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "gal.css" %}">
+<link rel="stylesheet" href="{% static "detailsStyle.css" %}">
+{% endblock head %}
+{% block content %}
+<div style="height: 500px">
+<my-gallery imgs="
+    {% for bild in product.images.all %}
+    {{bild.image.url}} {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+"></my-gallery>
+</div>
+
+<section class="greyHead">
+    <h1>Meine Überschrift</h1>
+</section>
+<section class="description">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima dolorum pariatur, magni voluptatibus necessitatibus voluptatem sed architecto nemo, labore nobis odit, dolorem aut! Quae iusto inventore ad illo? In, magni.
+    Tenetur inventore fugit similique atque repellat sequi a, consectetur fuga itaque ipsum dolor nihil. Labore, beatae inventore eaque, dolore autem harum explicabo accusamus deserunt libero esse temporibus molestias ab. Repudiandae?
+    Doloribus eaque recusandae exercitationem ullam quod molestiae minus facere vel, rem omnis, sed, aperiam unde velit architecto dolorem maiores. Eligendi quia nesciunt quos tenetur inventore quae facere sit! Eveniet, reiciendis.
+    Placeat dolorum, similique voluptates obcaecati, iure fugit necessitatibus quis velit dolore, explicabo sequi numquam nam eveniet. Ab nihil temporibus magni, vel suscipit ipsa minus quas quasi natus perspiciatis sequi praesentium!
+    Rerum atque beatae fugit possimus laudantium. Molestiae cum aspernatur ratione labore assumenda. Sit, iusto quo quisquam quaerat numquam ratione, aliquid aliquam sint ad illum magni similique ipsum. Aliquam, perspiciatis possimus?
+    Odit pariatur odio vitae eius dolores sunt totam porro accusantium possimus consectetur, et aperiam ullam rerum ducimus nobis minus error autem sequi cum, enim deserunt adipisci ipsum. Ullam, deleniti architecto.
+    Odit a expedita praesentium, possimus recusandae nostrum, placeat vel facere reprehenderit iste ea eum sapiente quaerat cupiditate itaque in exercitationem eaque, dignissimos pariatur ut nulla hic soluta. Reiciendis, recusandae aperiam.
+    Incidunt illum maiores quos veniam asperiores quis, inventore ducimus at consectetur. Sunt ab perspiciatis tempore ratione magnam unde fugiat quod architecto. Dignissimos nam at debitis obcaecati officiis eveniet doloremque perferendis?
+</section>
+
+
+
+
+<script src="{% static 'galElement.js' %}" type="module" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock content %}
+

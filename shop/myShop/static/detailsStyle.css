@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Champignon';
+    src: url('/static/fonts/Champignon.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HenriDidot';
+    src: url('/static/fonts/HenriDidot.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Buenard-Bold';
+    src: url('/static/fonts/Buenard-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Buenard-Regular';
+    src: url('/static/fonts/Buenard-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.greyHead h1{
+    font-family: 'HenriDidot';
+    text-align: center;
+    
+}
+
+.description{
+    font-family: 'Buenard-Bold';
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #2b2b2b;
+    width: 100%;
+    padding: 50px;
+    min-height: 500px;
+    font-size: 1.3em;
+    word-spacing: 3px;
+}
+
+.greyHead{
+    background-color: #2b2b2b;
+    color: #f8f9fa;
+    width: 100%;
+    padding: 50px;
+}

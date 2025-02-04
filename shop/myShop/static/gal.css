@@ -1,0 +1,142 @@
+:root{
+    --galWidthAnim: 0px;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.test{
+    width: 500px;
+    height: 500px;
+    background-color: blue;
+}
+
+main{
+    width: 50vw;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid purple;
+}
+
+#gallery{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    border: 1px solid purple;
+    overflow: hidden;
+    background-color: rgba(128, 128, 128, 0.379);
+}
+
+.hide{
+    display: none;
+}
+
+#prev, #next{
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#prev{
+    left: 0;
+}
+
+#next{
+    right: 0;
+}
+
+#prev:hover{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));   
+}
+
+#next:hover{
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));   
+ 
+}
+
+@keyframes slideIn{
+    0%{left: 100%;
+         
+    }
+    100%{left: 0px;
+       
+    }
+}
+
+@keyframes slideOut{
+    0%{
+        transform: (0px, 0px);
+        position: absolute;
+    }
+    100%{
+        transform: translate(var(--galWidthAnim), 0px);
+        position: absolute;
+    }
+}
+
+
+
+.slideIn{
+    animation-name: slideIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.slideOut{
+    animation-name: slideOut;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes slideInL{
+    0%{left: -100%;
+         
+    }
+    100%{left: 0px;
+       
+    }
+}
+
+@keyframes slideOutL{
+
+    0%{
+        transform: translate(0px, 0px);
+        position: absolute;
+    }
+    100%{
+        transform: translate(var(--galWidthAnim), 0px);
+        position: absolute;
+    }
+}
+
+
+
+.slideInL{
+    animation-name: slideInL;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.slideOutL{
+    animation-name: slideOutL;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+my-gallery{
+    width: 100%;
+}
+
+
+.galImg{
+    position: relative;
+}
