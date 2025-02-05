@@ -1,12 +1,22 @@
 {% extends "base.html" %}
-
+{% load static %}
 
     {% block content %}
-    
+    <div style="height: 500px">
+        <my-gallery imgs="
+            {% for werbung in headerGallery.all%}
+            {{werbung.image.url}} {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        "></my-gallery>
+      </div>
+      <section class="greyHead">
+        <h1>Meine Überschrift</h1>
+      </section>
+
     <div class="productGrid">
         {% for product in products %}
-        <div class="card product bg-light" style="height: 350px; width: 200px;">
-            <img class="card-img-top" style="height: 200px" src="{{product.images.first.image.url}}" alt="Card image cap">
+        <div class="card product bg-light" style="height: 450px; width: 100%;">
+            <img class="card-img-top" style="height: 300px" src="{{product.images.first.image.url}}" alt="Card image cap">
             <div class="card-body ">
               <h5 class="card-title">{{product.titel}}</h5>
               <p class="card-text">{{product.preis}}€</p>
@@ -14,4 +24,8 @@
             </div>
         </div>
         {% endfor %}
+      </div>
+    
+          <script src="{% static 'galElement.js' %}" type="module" />
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         {% endblock content %}

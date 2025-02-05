@@ -5,12 +5,42 @@
 <link rel="stylesheet" href="{% static "detailsStyle.css" %}">
 {% endblock head %}
 {% block content %}
-<div style="height: 500px">
-<my-gallery imgs="
-    {% for bild in product.images.all %}
-    {{bild.image.url}} {% if not forloop.last %}, {% endif %}
-    {% endfor %}
-"></my-gallery>
+<section class="productOverview">
+
+    <div style="height: 450px; width:100%; display: inline-block;">
+        <my-gallery imgs="
+        {% for bild in product.images.all %}
+        {{bild.image.url}} {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        "></my-gallery>
+    </div>
+    <div class="addWarenkorb">
+        <h1>{{product.titel}}</h1>
+        <table>
+            <tr>
+                <th>Höhe</th>
+                <td>{{product.höhe}}</td>
+            </tr>
+            <tr>
+                <th>Breite</th>
+                <td>{{product.breite}}</td>
+            </tr>
+            <tr>
+                <th>Farbe</th>
+                <td>{{product.farbe}}</td>
+            </tr>
+            <tr>
+                <th>Material</th>
+                <td>{{product.material}}</td>
+            </tr>
+            <tr>
+                <th>Preis</th>
+                <td>{{product.preis}}</td>
+            </tr>
+        </table>
+    </div>
+</section>
+    
 </div>
 
 <section class="greyHead">

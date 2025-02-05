@@ -375,6 +375,17 @@ class Gallery extends HTMLElement {
             }
         }
 
+        if (img.height == img.width && window.innerWidth < window.innerHeight) {
+            img.setAttribute("width", "100%");
+            img.setAttribute("height", "auto");
+        }
+
+        if (img.height == img.width && window.innerWidth > window.innerHeight) {
+            img.setAttribute("width", "auto");
+            img.setAttribute("height", "100%");
+
+        }
+
     }
 
     timeoutP(time, callBack) {

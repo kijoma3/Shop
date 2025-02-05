@@ -6,6 +6,13 @@
 }
 
 @font-face {
+    font-family: 'BebasNeue';
+    src: url('/static/fonts/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'HenriDidot';
     src: url('/static/fonts/HenriDidot.otf') format('truetype');
     font-weight: normal;
@@ -29,6 +36,7 @@
 .greyHead h1{
     font-family: 'HenriDidot';
     text-align: center;
+    font-weight: bold;
     
 }
 
@@ -49,4 +57,38 @@
     color: #f8f9fa;
     width: 100%;
     padding: 50px;
+}
+
+.productOverview{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.addWarenkorb{
+    width: 100%;
+    height: 100%;
+}
+.addWarenkorb h1{
+    text-align: center;
+    font-family: Buenard-Bold;
+}
+
+.addWarenkorb table{
+    margin: 30px 50px;
+    font-size: 1.2em;
+}
+
+.addWarenkorb table tr{
+    height: 50px;
+}
+.addWarenkorb table th{
+    padding-right: 30px;
+    font-family: Arial;
+    border-right: 1px solid #e9e9e9;
+    text-align: left;
+}
+.addWarenkorb table td{
+    font-family: Arial;
+    width: 170px;
+    text-align: center;
 }
