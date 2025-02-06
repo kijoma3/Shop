@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    
+{% endblock head %}
+{% block content %}
+<div class="registerForm mx-auto ">
+    <form method="POST">
+        {% csrf_token %}
+        {{nachricht}}
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" aria-describedby="emailHelpId" placeholder="abc@mail.com" />
+        <small id="emailHelpId" class="form-text text-muted">{{nnn}}</small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" aria-describedby="emailHelpId" placeholder="Vorname" />
+        <small id="emailHelpId" class="form-text text-muted"></small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Passwort</label>
+        <input type="password" class="form-control" name="password" aria-describedby="emailHelpId" placeholder="" />
+        <small id="emailHelpId" class="form-text text-muted">{{pw}}</small>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        Submit
+    </button>
+</form>
+    
+</div>
+{% endblock content %}

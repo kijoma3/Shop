@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static "detailsStyle.css" %}">
 {% endblock head %}
 {% block content %}
+
 <section class="productOverview">
 
     <div style="height: 450px; width:100%; display: inline-block;">
@@ -15,6 +16,11 @@
         "></my-gallery>
     </div>
     <div class="addWarenkorb">
+        <div class = "alert alert-success alert-dismissible"> 
+            Zum Warenkorb hinzugefügt!
+            <button type = "button" class = "btn-close" data-bs-dismiss = "alert"> 
+            </button> 
+        </div>
         <h1>{{product.titel}}</h1>
         <table>
             <tr>
@@ -38,6 +44,7 @@
                 <td>{{product.preis}}</td>
             </tr>
         </table>
+            <button id="addToCart" class="btn btn-primary" data-product-id="{{ product.id }}">In den Warenkorb hinzufügen</button>
     </div>
 </section>
     
@@ -46,6 +53,7 @@
 <section class="greyHead">
     <h1>Meine Überschrift</h1>
 </section>
+
 <section class="description">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima dolorum pariatur, magni voluptatibus necessitatibus voluptatem sed architecto nemo, labore nobis odit, dolorem aut! Quae iusto inventore ad illo? In, magni.
     Tenetur inventore fugit similique atque repellat sequi a, consectetur fuga itaque ipsum dolor nihil. Labore, beatae inventore eaque, dolore autem harum explicabo accusamus deserunt libero esse temporibus molestias ab. Repudiandae?
@@ -62,5 +70,21 @@
 
 <script src="{% static 'galElement.js' %}" type="module" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById("addToCart").addEventListener("click", function() {
+        let productId = this.getAttribute("data-product-id");
+
+        fetch(`/addCart/?productId=${productId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler: " + data.error);
+                } else {
+                    alert("Produkt erfolgreich hinzugefügt!");
+                }
+            })
+            .catch(error => console.error("Fehler bei der Anfrage:", error));
+    });
+</script>
 {% endblock content %}
 

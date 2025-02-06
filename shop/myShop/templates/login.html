@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    
+{% endblock head %}
+{% block content %}
+<div class="registerForm mx-auto ">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    
+</div>
+{% endblock content %}
