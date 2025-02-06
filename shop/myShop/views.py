@@ -50,7 +50,11 @@ def register(request):
 
 @login_required
 def cartView(request):
-    return render(request, 'cart.html')
+    cart = json.loads(request.COOKIES.get("cart", "[]"))
+    products =[]
+    for product in cart:
+        products.append(Product.objects.get(id=product))
+    return render(request, 'cart.html', {'products': products})
     
 def addCartView(request):
     productId = request.GET.get('productId')

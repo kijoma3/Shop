@@ -2,11 +2,24 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'register.css' %}">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
     
 {% endblock head %}
 {% block content %}
-<div class="registerForm mx-auto ">
+<div class="cartContainer mx-auto">
+{% for product in products %}
+<div class="productColumns">
+    <div class="productRows">
+        <strong>{{product}}</strong>
+        <small class="form-text text-muted">Material: {{product.material}}</small>
+        <small class="form-text text-muted">Farbe: {{product.farbe}}</small>
+    </div>
 
-    
+    <strong>Preis: {{product.preis}}</strong>
+
+    <img src="{{product.images.first.image.url}}" height="100%" width="100px" alt="Bild: {{product}}">
 </div>
+{% endfor %}
+</div>
+    
 {% endblock content %}

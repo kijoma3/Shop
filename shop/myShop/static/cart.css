@@ -1,0 +1,32 @@
+.cartContainer{
+    width: 500px;
+    height: 500px;
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 1250px) {
+    .cartContainer{
+        margin-top: 10px;
+        width: 100%;
+        height: 500px;
+        background-color: #f8f9fa;
+    }
+  }
+  
+
+.productRows{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.productColumns{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid grey;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}

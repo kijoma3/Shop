@@ -33,6 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '192.168.178.81', '127.0.0.1']
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "/login/"
 
 # Application definition
 
