@@ -12,28 +12,33 @@
     <h1>Warenkorb</h1>
 </section>
 <div class="cartContainer mx-auto">
-{% for product in products %}
-<div class="productColumns">
-    <div class="productRows">
-        <strong>{{product}}</strong>
-        <small class="form-text text-muted">Material: {{product.material}}</small>
-        <small class="form-text text-muted">Farbe: {{product.farbe}}</small>
+    {% if products %}
+    {% for product in products %}
+    <div class="productColumns">
+        <div class="productRows">
+            <strong>{{product}}</strong>
+            <small class="form-text text-muted">Material: {{product.material}}</small>
+            <small class="form-text text-muted">Farbe: {{product.farbe}}</small>
+        </div>
+        
+        <span>Preis: {{product.preis}} €</span>
+        
+        <a style="height: 100%" href="{%url 'product_detail' product.id%}"><img src="{{product.images.first.image.url}}" height="100%" width="100px" alt="Bild: {{product}}"></a>
     </div>
-
-    <span>Preis: {{product.preis}} €</span>
-
-    <a style="height: 100%" href="{%url 'product_detail' product.id%}"><img src="{{product.images.first.image.url}}" height="100%" width="100px" alt="Bild: {{product}}"></a>
-</div>
-{% endfor %}
-<strong style="margin-left: 10px">Preis gesamt: {{preisGesamt}} €</strong>
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-    {% csrf_token %}
-    {{paypalForm.as_p}}
-    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
-           name="submit" alt="PayPal Checkout"
-           style="width: 200px; height: auto;">
-</form>
-
+    {% endfor %}
+    
+    <strong style="margin-left: 10px">Preis gesamt: {{preisGesamt}} €</strong>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        {% csrf_token %}
+        {{paypalForm.as_p}}
+        <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
+        name="submit" alt="PayPal Checkout"
+        style="width: 200px; height: auto;">
+    </form>
+    {% else %}
+        <p class="alert alert-warning">Dein Warenkorb ist leer!</p>
+    {% endif %}
+    
 </div>
     
 {% endblock content %}
