@@ -1,6 +1,6 @@
 .cartContainer{
     width: 500px;
-    height: 500px;
+    min-height: 500px;
     background-color: #f8f9fa;
 }
 
@@ -8,11 +8,12 @@
     .cartContainer{
         margin-top: 10px;
         width: 100%;
-        height: 500px;
+        min-height: 500px;
         background-color: #f8f9fa;
     }
   }
   
+  body{}
 
 .productRows{
     display: flex;
@@ -29,4 +30,10 @@
     align-items: center;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+input[type="image"] {
+    margin: 20px auto;
+    width: 200px;  /* Breite anpassen */
+    height: auto;  /* Höhe proportional skalieren */
 }

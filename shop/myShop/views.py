@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+
 from .forms import ProductForm, ProductImageFormSet
 from .models import Product, HeaderGallery
 from django.views.generic import DetailView, ListView
@@ -8,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 import json
 from django.http import JsonResponse
+from paypal.standard.forms import PayPalPaymentsForm
+import uuid
+from django.http import HttpResponse
 
 # Create your views here.
 def addProduct(request):
@@ -52,10 +56,27 @@ def register(request):
 def cartView(request):
     cart = json.loads(request.COOKIES.get("cart", "[]"))
     products =[]
-    for product in cart:
-        products.append(Product.objects.get(id=product))
-    return render(request, 'cart.html', {'products': products})
+    preisGesamt = 0
+    for productId in cart:
+        product = Product.objects.get(id=productId)
+        products.append(product)
+        preisGesamt += product.preis
+
+    paypal_dict = {
+        "business": "sb-xjis637545904@business.example.com",
+        "amount": str(preisGesamt),
+        "item_name": "Testprodukt",
+        "invoice": str(uuid.uuid4()),
+        "currency_code": "EUR",
+        "notify_url": request.build_absolute_uri(reverse("product_list")),
+        "return_url": request.build_absolute_uri(reverse("payment_done")),
+        "cancel_return": request.build_absolute_uri(reverse("product_list")),
+    }
+
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    return render(request, 'cart.html', {'products': products, 'preisGesamt': preisGesamt, 'paypalForm': form})
     
+
 def addCartView(request):
     productId = request.GET.get('productId')
     cart = json.loads(request.COOKIES.get('cart', '[]'))
@@ -64,6 +85,12 @@ def addCartView(request):
     response = JsonResponse({"message": "Produkt hinzugefügt", "cart": cart})
     response.set_cookie("cart", json.dumps(cart), max_age=3600 * 24 * 7)
     return response
+
+def payment_done(request):
+    response = render(request, "payment_done.html")
+    response.delete_cookie("cart")
+    return response
+
 
 class ProductListView(ListView):
     model = Product

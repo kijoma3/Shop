@@ -35,6 +35,10 @@ ALLOWED_HOSTS = ['localhost', '192.168.178.81', '127.0.0.1']
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = "/login/"
 
+
+PAYPAL_RECEIVER_EMAIL = 'sb-t3qby37542570_api1.business.example.com'
+PAYPAL_TEST = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myShop',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
