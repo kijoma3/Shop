@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .forms import ProductForm, ProductImageFormSet
-from .models import Product, HeaderGallery
+from .forms import ProductForm, ProductImageFormSet, UserProfileForm
+from .models import Product, HeaderGallery, UserProfile
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from paypal.standard.forms import PayPalPaymentsForm
 import uuid
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def addProduct(request):
@@ -71,11 +72,26 @@ def cartView(request):
         "notify_url": request.build_absolute_uri(reverse("product_list")),
         "return_url": request.build_absolute_uri(reverse("payment_done")),
         "cancel_return": request.build_absolute_uri(reverse("product_list")),
+        "custom": json.dumps(cart)
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, 'cart.html', {'products': products, 'preisGesamt': preisGesamt, 'paypalForm': form})
     
+
+def editProfile(request):
+    profile = request.user.userprofile
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile_detail')
+    else:
+        form = UserProfileForm(instance=profile)
+
+    return render(request, 'editProfile.html', {'form': form})
+
+
 
 def addCartView(request):
     productId = request.GET.get('productId')
@@ -101,8 +117,21 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         context['headerGallery'] = HeaderGallery.objects.all()
         return context
+    
+    def get_queryset(self):
+        return Product.objects.filter(ist_verkauft=False)
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_detail.html'
     context_object_name = 'product'
+
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = UserProfile
+    template_name = 'profile.html'
+    context_object_name = 'userProfile'
+
+    def get_object(self):
+        profile, created = UserProfile.objects.get_or_create(user=self.request.user)
+        return profile

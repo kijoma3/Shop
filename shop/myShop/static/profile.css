@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Champignon';
+    src: url('/static/fonts/Champignon.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('/static/fonts/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HenriDidot';
+    src: url('/static/fonts/HenriDidot.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Buenard-Bold';
+    src: url('/static/fonts/Buenard-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Buenard-Regular';
+    src: url('/static/fonts/Buenard-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.greyHead h1{
+    font-family: 'HenriDidot';
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.description{
+    font-family: 'Buenard-Bold';
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #2b2b2b;
+    width: 100%;
+    padding: 50px;
+    min-height: 500px;
+    font-size: 1.3em;
+    word-spacing: 3px;
+}
+
+.greyHead{
+    background-color: #2b2b2b;
+    color: #f8f9fa;
+    width: 100%;
+    padding: 50px;
+}
+
+.productOverview{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.addWarenkorb{
+    width: 100%;
+    height: 100%;
+}
+.addWarenkorb h1{
+    text-align: center;
+    font-family: Buenard-Bold;
+}
+
+.addWarenkorb table{
+    margin: 30px 50px;
+    font-size: 1.2em;
+}
+
+.addWarenkorb table tr{
+    height: 50px;
+}
+.addWarenkorb table th{
+    padding-right: 30px;
+    font-family: Arial;
+    border-right: 1px solid #e9e9e9;
+    text-align: left;
+}
+.addWarenkorb table td{
+    font-family: Arial;
+    min-width: 190px;
+    text-align: left;
+    padding-left: 45px;
+}
+
+.addWarenkorb button{
+    margin-left: 50px;
+}

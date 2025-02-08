@@ -16,6 +16,8 @@ urlpatterns = [
     path('paypal/', include(paypal_urls)),
     path('payment_done/', views.payment_done, name='payment_done'),
    # path('payment_canceled/', views.payment_canceled, name='payment_canceled'),
+    path('profile/edit/', views.editProfile, name='edit_profile'),
+    path('profile/', views.ProfileDetailView.as_view(), name='profile_detail')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

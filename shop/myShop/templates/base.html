@@ -40,7 +40,7 @@
                         <i class="bi bi-cart fs-5"></i>
                     </a></li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="#">{{user.username}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url "profile_detail" %}">{{user.username}}</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrieren</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
