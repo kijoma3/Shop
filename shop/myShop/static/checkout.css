@@ -4,14 +4,22 @@
     background-color: #f8f9fa;
     padding-left: 30%;
 }
-.cartContainer:nth-child(2){
-    width: 100%;
-    min-height: 500px;
-    background-color: #ffffff;
-    padding-right: 30%;
-    padding-left: 15px;
-}
+@media (max-width: 500px){
+    .cartContainer:nth-child(2){
+        width: 100%;
+        min-height: 500px;
+        background-color: #ffffff;
+        padding-right: 0%;
+        padding-left: 0px;
+    }
 
+    .cartContainer:first-child{
+        width: 100%;
+        min-height: 500px;
+        background-color: #f8f9fa;
+        padding-left: 0%;
+    }
+}
 @media (max-width: 1250px) {
     .cartContainer{
         margin-top: 10px;
@@ -21,10 +29,12 @@
     }
   }
   
-.addAdress{
-    margin-left: 25%;
-    margin-top: 20%;
-}
+  
+  .addAdress{
+      margin-left: 25%;
+      margin-top: 20%;
+    }
+    
 
 .productRows{
     display: flex;
@@ -35,6 +45,10 @@
 .cartContainer h1{
     margin-left: 30%;
     font-family: 'Henry Didot';
+}
+
+@media (max-width: 500px){
+
 }
 
 .productColumns{
