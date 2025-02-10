@@ -4,6 +4,15 @@
     background-color: #f8f9fa;
     padding-left: 30%;
 }
+
+.cartContainer:nth-child(2){
+    width: 100%;
+    min-height: 500px;
+    background-color: #ffffff;
+    padding-right: 30%;
+    padding-left: 15px;
+}
+
 @media (max-width: 500px){
     .cartContainer:nth-child(2){
         width: 100%;
