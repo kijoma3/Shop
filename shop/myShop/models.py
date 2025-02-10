@@ -41,11 +41,11 @@ class UserProfile(models.Model):
     
 class Orders(models.Model):
     invoice = models.CharField(max_length=70)
-    produkt = models.OneToOneField(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    produkt = models.ManyToManyField(Product) 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
     betrag = models.CharField(max_length=50)
     status = models.CharField(max_length=25)
     datum = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.produkt.titel}"
+        return f"{self.user.username} hat eine Bestellung bezahlt! Bestellungsnr: {self.invoice}"

@@ -18,6 +18,7 @@ from myShop import views
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('', include('myShop.urls')),
     path('admin/', admin.site.urls),

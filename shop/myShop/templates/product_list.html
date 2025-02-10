@@ -12,7 +12,16 @@
       <section class="greyHead">
         <h1>Meine Überschrift</h1>
       </section>
-
+      <div class="filter">
+        <div>
+          <a href="?sort=preis"><i class="bi bi-sort-numeric-down" style="font-size: 1.7em"></i></a>
+          <a href="?sort=-preis"><i class="bi bi-sort-numeric-up" style="font-size: 1.7em"></i></a>
+        </div>
+        <div>
+          <a href="?sort=titel"><i class="bi bi-sort-alpha-down" style="font-size: 1.7em"></i></a>
+          <a href="?sort=-titel"><i class="bi bi-sort-alpha-up" style="font-size: 1.7em"></i></a>
+        </div>
+      </div>
     <div class="productGrid">
         {% for product in products %}
         <div class="card product bg-light" style="height: 450px; width: 100%;">

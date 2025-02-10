@@ -8,17 +8,27 @@
     
 {% endblock head %}
 {% block content %}
+<script>
+    let del = (elementId) => {
+        console.log("delete", elementId);
+        let elementIdd = elementId;
+        element = document.getElementById(elementIdd);
+        element.remove();
+    }
+</script>
+
 <section class="greyHead">
     <h1>Warenkorb</h1>
 </section>
 <div class="cartContainer mx-auto">
     {% if products %}
     {% for product in products %}
-    <div class="productColumns">
+    <div class="productColumns" id="{{product.id}}">
         <div class="productRows">
             <strong>{{product}}</strong>
             <small class="form-text text-muted">Material: {{product.material}}</small>
             <small class="form-text text-muted">Farbe: {{product.farbe}}</small>
+            <i class="bi bi-trash" onclick="del({{product.id}})"></i>
         </div>
         
         <span>Preis: {{product.preis}} €</span>
@@ -28,17 +38,14 @@
     {% endfor %}
     
     <strong style="margin-left: 10px">Preis gesamt: {{preisGesamt}} €</strong>
-    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-        {% csrf_token %}
-        {{paypalForm.as_p}}
-        <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
-        name="submit" alt="PayPal Checkout"
-        style="width: 200px; height: auto;">
-    </form>
+    <div style="margin: 10px 10px">
+    <a href="{% url "checkout" %}"><button class="btn btn-primary">Zur Kasse</button></a>
+    </div>
     {% else %}
         <p class="alert alert-warning">Dein Warenkorb ist leer!</p>
     {% endif %}
     
 </div>
-    
+
 {% endblock content %}
+

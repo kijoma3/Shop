@@ -12,9 +12,6 @@
     <h1>Warenkorb</h1>
 </section>
 <section class="productOverview">
-    <div style="height: 450px; width:100%; display: inline-block;">
-
-    </div>
     <div class="addWarenkorb">
         <h1>{{product.titel}}</h1>
         <table>
@@ -39,7 +36,26 @@
                 <td>{{userProfile.ort}}</td>
             </tr>
         </table>
+        <a href="{% url "edit_profile" %}"><button class="btn btn-primary">Bearbeiten</button></a>
     </div>
+    <section>
+        <h1 style="text-align: center; font-family: 'Henry Didot'">Zuletzt bestellt</h1>
+    <div class="bestellHistory">
+        {% for order in userProfile.user.orders.all %}
+            {% for produkt in order.produkt.all %}
+            <div class="bestellung">
+                    <span style="position: absolute">{{produkt.datum}}</span>
+                    <strong style="margin: auto 0px">{{produkt.titel}}
+                    </strong>
+                <span style="margin: auto">{{produkt.preis}} €</span>
+                <a href="{% url 'product_detail' produkt.id %}">
+                <img style="float: right" src="{{produkt.images.first.image.url}}" width="100px" height="100px">
+                </a>
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</section>
 </section>
 
 

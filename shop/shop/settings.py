@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-g5n6x9hzd5(3e^!+47mj^^lr%)xjewre#%v!f7lkw(dsw9$e$l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.178.81', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = "/login/"
 
@@ -50,6 +50,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myShop',
     'paypal.standard.ipn',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://6cc6-145-254-36-25.ngrok-free.app",
+    "https://paypal.com",
+    "https://ipnpb.paypal.com",
+    "https://d9b7-145-254-36-25.ngrok-free.app",
+    "https://173.0.80.0",
+    "https://64.4.240.0",
+    "https://64.4.248.0",
+    "https://66.211.168.0",
+    "https://91.243.72.0",
+    "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr",
+    "https://www.paypal.com", 
+    "https://www.sandbox.paypal.com",
 ]
 
 MIDDLEWARE = [

@@ -7,7 +7,7 @@
 {% block content %}
 
 <section class="productOverview">
-
+    
     <div style="height: 450px; width:100%; display: inline-block;">
         <my-gallery imgs="
         {% for bild in product.images.all %}
@@ -16,7 +16,7 @@
         "></my-gallery>
     </div>
     <div class="addWarenkorb">
-        <div class = "alert alert-success alert-dismissible"> 
+        <div id="alert" class="alert alert-success alert-dismissible" style="visibility: hidden"> 
             Zum Warenkorb hinzugefügt!
             <button type = "button" class = "btn-close" data-bs-dismiss = "alert"> 
             </button> 
@@ -80,7 +80,8 @@
                 if (data.error) {
                     alert("Fehler: " + data.error);
                 } else {
-                    alert("Produkt erfolgreich hinzugefügt!");
+                    let alert = document.getElementById('alert');
+                    alert.style.visibility = 'visible';
                 }
             })
             .catch(error => console.error("Fehler bei der Anfrage:", error));

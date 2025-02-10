@@ -29,9 +29,9 @@
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Über uns</a></li>
                 </ul>
-                <form class="d-flex mx-auto">
+                <form class="d-flex mx-auto" method="GET" action="{% url "product_list"%}">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Suche..." aria-label="Search">
+                        <input class="form-control" name="q" type="search" placeholder="Suche..." aria-label="Search">
                         <button class="btn btn-outline-primary" type="submit">Suchen</button>
                     </div>
                 </form>
