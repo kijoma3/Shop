@@ -39,13 +39,13 @@ class OrdersAdmin(admin.ModelAdmin):
         return False  # ✅ Verhindert das Bearbeiten von Bestellungen
 
     def has_delete_permission(self, request, obj=None):
-        return False  # ✅ Verhindert das Löschen von Bestellungen
+        return True # ✅ Verhindert das Löschen von Bestellungen
     
     def produkt(self, obj):
         return ", ".join([product.titel for product in obj.products.all()])
     
-    list_display = ("invoice", "user", "produkt", "betrag", "status", "datum")  # Tabellarische Anzeige
-    readonly_fields = ("invoice", "user", "produkt", "betrag", "status", "datum")  # Felder nur lesbar
+    list_display = ("order_id", "user", "produkt", "betrag", "status", "datum", "invoice")  # Tabellarische Anzeige
+    readonly_fields = ("order_id", "user", "produkt", "betrag", "status", "datum", "invoice")  # Felder nur lesbar
 
 
 admin.site.register(Orders, OrdersAdmin)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 class Product(models.Model):
@@ -46,6 +47,7 @@ class Orders(models.Model):
     betrag = models.CharField(max_length=50)
     status = models.CharField(max_length=25)
     datum = models.DateTimeField(auto_now_add=True)
+    order_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 
     def __str__(self):
         return f"{self.user.username} hat eine Bestellung bezahlt! Bestellungsnr: {self.invoice}"

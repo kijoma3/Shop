@@ -12,12 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import stripe
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 MEDIA_URL = '/media/'
 
 if not os.path.exists(MEDIA_ROOT):
@@ -31,7 +30,7 @@ SECRET_KEY = 'django-insecure-g5n6x9hzd5(3e^!+47mj^^lr%)xjewre#%v!f7lkw(dsw9$e$l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'https://6e40-145-254-36-25.ngrok-free.app/']
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = "/login/"
 
@@ -39,6 +38,11 @@ LOGIN_URL = "/login/"
 PAYPAL_RECEIVER_EMAIL = 'sb-t3qby37542570_api1.business.example.com'
 PAYPAL_TEST = True
 
+
+STRIPE_PUBLIC_KEY = "pk_test_51QtaoIGINRrgLBNvSPscPQ6ykcu10vdZswkQJ5j1zlA2tjRN5FNUXQCTPKe29PiJ0MaINhrMzf11DDUO66vko5V400986OAqsk"
+STRIPE_SECRET_KEY = "sk_test_51QtaoIGINRrgLBNvyCBmYmLjc4HAgn7jl0kZeDvAmLD5eYGbvWPiHDIRXFEs5L6IYVfZsR7OvrYRxtmFtrcMrVuy00D0yPQGyR"
+WEBHOOK_SECRET = "whsec_kiTB3AEmgbzMaWfeOvgPWeIKzDN1p07J"
+stripe.api_key = STRIPE_SECRET_KEY
 # Application definition
 
 INSTALLED_APPS = [
@@ -65,6 +69,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr",
     "https://www.paypal.com", 
     "https://www.sandbox.paypal.com",
+    "https://ec04-145-254-36-25.ngrok-free.app"
 ]
 
 MIDDLEWARE = [
@@ -107,6 +112,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+VERSAND = 5.00
 
 
 # Password validation

@@ -1,0 +1,61 @@
+**Datenschutzerklärung für den Online-Shop**
+
+**1. Einleitung**
+Wir freuen uns über Ihr Interesse an unserem Online-Shop. Der Schutz Ihrer personenbezogenen Daten ist uns ein wichtiges Anliegen. Mit dieser Datenschutzerklärung möchten wir Sie darüber informieren, welche Daten wir erheben, wie wir diese nutzen und welche Rechte Sie in Bezug auf Ihre Daten haben.
+
+**2. Verantwortlicher**
+Verantwortlich für die Datenverarbeitung ist:
+[Name der Betreiberin]
+[Adresse]
+[E-Mail]
+[Telefon]
+
+**3. Erhebung und Verarbeitung personenbezogener Daten**
+Wir erheben und verarbeiten Ihre personenbezogenen Daten nur, soweit dies zur Bereitstellung unseres Online-Shops, zur Abwicklung Ihrer Bestellungen oder zur Kommunikation mit Ihnen erforderlich ist.
+
+Die erhobenen Daten umfassen:
+- Name, Adresse, E-Mail-Adresse, Telefonnummer
+- Zahlungsinformationen (z. B. bei Nutzung von PayPal oder Stripe)
+- Bestellhistorie und gekaufte Produkte
+- Kommunikationsdaten (z. B. Anfragen per Kontaktformular)
+
+**4. Zwecke der Datenverarbeitung**
+Wir verwenden Ihre Daten zu folgenden Zwecken:
+- Bearbeitung und Abwicklung Ihrer Bestellungen
+- Zahlungsabwicklung
+- Bereitstellung und Verbesserung unseres Online-Shops
+- Kundenservice und Support
+- Erfüllung gesetzlicher Pflichten
+
+**5. Weitergabe von Daten an Dritte**
+Eine Weitergabe Ihrer personenbezogenen Daten erfolgt nur, wenn dies zur Vertragserfüllung notwendig ist oder wenn wir gesetzlich dazu verpflichtet sind. Dies betrifft insbesondere:
+- Zahlungsdienstleister (PayPal, Stripe)
+- Versanddienstleister
+- IT-Dienstleister zur Wartung unseres Online-Shops
+
+**6. Speicherung und Löschung von Daten**
+Wir speichern Ihre personenbezogenen Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist oder wir gesetzlich dazu verpflichtet sind. Nach Ablauf der Aufbewahrungsfrist werden Ihre Daten gelöscht oder anonymisiert.
+
+**7. Ihre Rechte als betroffene Person**
+Sie haben folgende Rechte in Bezug auf Ihre personenbezogenen Daten:
+- Auskunftsrecht gemäß Art. 15 DSGVO
+- Recht auf Berichtigung gemäß Art. 16 DSGVO
+- Recht auf Löschung gemäß Art. 17 DSGVO
+- Recht auf Einschränkung der Verarbeitung gemäß Art. 18 DSGVO
+- Recht auf Datenübertragbarkeit gemäß Art. 20 DSGVO
+- Widerspruchsrecht gemäß Art. 21 DSGVO
+
+Zur Ausübung Ihrer Rechte können Sie uns unter den oben genannten Kontaktdaten erreichen.
+
+**8. Datensicherheit**
+Wir setzen technische und organisatorische Maßnahmen ein, um Ihre Daten vor Verlust, Missbrauch und unbefugtem Zugriff zu schützen.
+
+**9. Cookies und Tracking-Technologien**
+Unser Online-Shop verwendet Cookies und ähnliche Technologien zur Verbesserung der Nutzererfahrung. Sie können der Verwendung von Cookies jederzeit in den Einstellungen Ihres Browsers widersprechen.
+
+**10. Änderungen dieser Datenschutzerklärung**
+Wir behalten uns das Recht vor, diese Datenschutzerklärung anzupassen, um sie an geänderte rechtliche Anforderungen oder neue Funktionen unseres Online-Shops anzupassen.
+
+**11. Kontakt**
+Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten können Sie uns unter den oben genannten Kontaktdaten erreichen.
+

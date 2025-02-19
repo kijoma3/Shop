@@ -35,6 +35,10 @@
     font-style: normal;
 }
 
+*{
+    box-sizing: border-box;
+}
+
 .headerTitle{
     font-family: 'Buenard-Regular';
     font-size: 1.5em;
@@ -99,6 +103,7 @@ body{
     width: 100%;
     background-color: #f8f9fa;
     display: flex;
-    justify-content:left;
+    justify-content:center;
+    align-items: center;
     gap: 60px;
 }

@@ -1,0 +1,41 @@
+**Allgemeine Geschäftsbedingungen (AGB) für den Online-Shop**
+
+**1. Geltungsbereich**
+Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Bestellungen, die über unseren Online-Shop getätigt werden. Betreiber des Shops ist [Name der Betreiberin], [Adresse], [E-Mail], [Telefon].
+
+**2. Vertragsabschluss**
+Die Darstellung der Produkte im Online-Shop stellt kein rechtlich bindendes Angebot dar. Ein Vertrag kommt erst mit der Annahme der Bestellung durch eine ausdrückliche Bestätigung per E-Mail zustande.
+
+**3. Preise und Zahlungsbedingungen**
+3.1. Alle angegebenen Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer.
+3.2. Die Versandkosten werden im Checkout-Prozess angezeigt und sind Bestandteil des Gesamtpreises.
+3.3. Die Zahlung erfolgt wahlweise über PayPal oder Stripe. Bei Stripe stehen die Zahlungsmethoden Kreditkarte, SEPA-Lastschrift, SOFORT Überweisung, iDEAL sowie Google Pay, Apple Pay und Link zur Verfügung.
+
+**4. Versand und Lieferung**
+4.1. Die Lieferung erfolgt ausschließlich in physischer Form an die im Bestellprozess angegebene Adresse.
+4.2. Die Lieferzeit beträgt in der Regel [Angabe der Lieferzeit, z. B. 3-7 Werktage], sofern in der Produktbeschreibung nichts anderes angegeben ist.
+4.3. Sollte ein Produkt nicht verfügbar sein, wird der Kunde unverzüglich informiert und bereits geleistete Zahlungen werden erstattet.
+
+**5. Widerrufsrecht**
+5.1. Verbraucher haben das Recht, den Kauf innerhalb von 14 Tagen ohne Angabe von Gründen zu widerrufen.
+5.2. Die Widerrufsfrist beginnt mit dem Erhalt der Ware.
+5.3. Zur Ausübung des Widerrufsrechts muss der Kunde uns per E-Mail oder postalisch über die Entscheidung informieren.
+5.4. Im Falle eines Widerrufs trägt der Kunde die unmittelbaren Kosten der Rücksendung der Waren.
+
+**6. Eigentumsvorbehalt**
+Bis zur vollständigen Bezahlung bleibt die Ware unser Eigentum.
+
+**7. Gewährleistung und Haftung**
+7.1. Es gelten die gesetzlichen Gewährleistungsrechte.
+7.2. Schadensersatzansprüche des Käufers sind ausgeschlossen, es sei denn, sie beruhen auf grober Fahrlässigkeit oder Vorsatz.
+
+**8. Datenschutz**
+Unsere Datenschutzbestimmungen sind in der Datenschutzerklärung einsehbar und regeln die Verarbeitung personenbezogener Daten.
+
+**9. Streitbeilegung**
+Die EU-Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die unter https://ec.europa.eu/consumers/odr/ erreichbar ist. Wir sind nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+
+**10. Schlussbestimmungen**
+10.1. Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.
+10.2. Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
+

@@ -9,12 +9,31 @@
 {% endblock head %}
 {% block content %}
 <script>
-    let del = (elementId) => {
-        console.log("delete", elementId);
-        let elementIdd = elementId;
-        element = document.getElementById(elementIdd);
-        element.remove();
-    }
+    
+
+let del = (elementId) => {
+    console.log("delete", elementId);
+    let elementIdd = elementId;
+    element = document.getElementById(elementIdd);
+    element.remove();
+
+        let productId = elementId;
+        console.log(productId);
+        fetch(`/removeFromCart/?productId=${productId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler: " + data.error);
+                } 
+
+                window.location.reload();
+            })
+            .catch(error => console.error("Fehler bei der Anfrage:", error));
+    
+            
+}
+// Beispiel: Wert "Banane" aus dem Array in `mein_array`-Cookie löschen
+
 </script>
 
 <section class="greyHead">

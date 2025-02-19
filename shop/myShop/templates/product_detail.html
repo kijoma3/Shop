@@ -16,10 +16,23 @@
         "></my-gallery>
     </div>
     <div class="addWarenkorb">
-        <div id="alert" class="alert alert-success alert-dismissible" style="visibility: hidden"> 
-            Zum Warenkorb hinzugefügt!
-            <button type = "button" class = "btn-close" data-bs-dismiss = "alert"> 
-            </button> 
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Produkt wurde erfolgreich hinzugefügt!
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+            <div id="liveToast2" class="toast align-items-center text-bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Produkt wurde bereits hinzugefügt!
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
         </div>
         <h1>{{product.titel}}</h1>
         <table>
@@ -70,18 +83,31 @@
 
 <script src="{% static 'galElement.js' %}" type="module" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
+    function showToast() {
+        var toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        toast.show();
+    }
+    function showToast2() {
+        var toast = new bootstrap.Toast(document.getElementById('liveToast2'));
+        toast.show();
+    }
+
     document.getElementById("addToCart").addEventListener("click", function() {
         let productId = this.getAttribute("data-product-id");
-
+        console.log(productId);
         fetch(`/addCart/?productId=${productId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
                     alert("Fehler: " + data.error);
                 } else {
-                    let alert = document.getElementById('alert');
-                    alert.style.visibility = 'visible';
+                    if(data.code == 1){
+                        showToast2();
+                    }else{
+                        showToast();
+                    }
                 }
             })
             .catch(error => console.error("Fehler bei der Anfrage:", error));

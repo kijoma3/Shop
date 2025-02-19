@@ -58,7 +58,7 @@
     {% endfor %}
     <div class="productColumns">
         <span>zzg. Versandkosten</span>
-        <span>7€</span>
+        <span>{{versandkosten}} €</span>
     </div>
     <strong style="margin-left: 10px">Preis gesamt: {{preisGesamt}} €</strong>
     {% if user.userprofile.vorname and user.userprofile.nachname and user.userprofile.adresse and user.userprofile.plz%}
@@ -68,6 +68,9 @@
         <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
         name="submit" alt="PayPal Checkout"
         style="width: 200px; height: auto;">
+    </form>
+    <form action="{% url "payment" %}">
+        <button class="btn btn-primary stripeButton" type="submit">Jetzt Kaufen</button>
     </form>
     {% endif %}
     {% else %}

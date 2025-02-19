@@ -34,7 +34,7 @@ def paypal_payment_received(sender, **kwargs):
         print(orderInfo['cart'])
 
 
-                # Bestellung in der Datenbank speichern
+    # Bestellung in der Datenbank speichern
         order = Orders.objects.create(
                     invoice=invoice_id,
                     betrag=amount,

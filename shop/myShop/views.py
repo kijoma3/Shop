@@ -1,14 +1,18 @@
+import os
+from django.conf import settings
 from django.shortcuts import render, redirect
 
+from shop.settings import VERSAND, WEBHOOK_SECRET
+
 from .forms import ProductForm, ProductImageFormSet, UserProfileForm
-from .models import Product, HeaderGallery, UserProfile
+from .models import Orders, Product, HeaderGallery, UserProfile
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 import json
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from paypal.standard.forms import PayPalPaymentsForm
 import uuid
 from django.http import HttpResponse
@@ -17,6 +21,8 @@ from paypal.standard.ipn.views import ipn
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+import stripe
+import markdown
 
 # Create your views here.
 def addProduct(request):
@@ -105,7 +111,6 @@ def editProfile(request):
             form.save()
             return redirect(reverse(next_url))
 
-            
     else:
         form = UserProfileForm(instance=profile)
 
@@ -118,14 +123,31 @@ def editProfile(request):
 
 
 
+def removeItemFromCart(request):
+    productId = request.GET.get('productId')
+    print("productID: ", productId)
+    cart = json.loads(request.COOKIES.get('cart'))
+    print("cart: ", cart)
+
+    cart.remove(productId)
+    print("cartNew: ", cart)
+
+    response = JsonResponse({"message": "Produkt gelöscht", "cart": cart})
+    response.set_cookie("cart", json.dumps(cart), max_age=3600 * 24 * 7)
+    return response
+
+
 def addCartView(request):
     productId = request.GET.get('productId')
     cart = json.loads(request.COOKIES.get('cart', '[]'))
-    cart.append(productId)
-
-    response = JsonResponse({"message": "Produkt hinzugefügt", "cart": cart})
-    response.set_cookie("cart", json.dumps(cart), max_age=3600 * 24 * 7)
-    return response
+    if cart.count(productId) > 0:
+        response = JsonResponse({"code": 1, "message": "Produkt bereits vorhanden", "cart": cart})
+        return response
+    else:
+        cart.append(productId)
+        response = JsonResponse({"message": "Produkt hinzugefügt", "cart": cart})
+        response.set_cookie("cart", json.dumps(cart), max_age=3600 * 24 * 7)
+        return response
 
 @csrf_exempt
 def payment_done(request):
@@ -179,6 +201,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         profile, created = UserProfile.objects.get_or_create(user=self.request.user)
         return profile
 
+# Für Paypal
 def checkout (request):
     cart = json.loads(request.COOKIES.get("cart", "[]"))
     products =[]
@@ -187,7 +210,7 @@ def checkout (request):
     paypalCustom = {}
     paypalCustom['userId'] = userId
     paypalCustom['cart'] = cart
-    versand = 7
+    versand = VERSAND
     for productId in cart:
         product = Product.objects.get(id=productId)
         products.append(product)
@@ -206,4 +229,137 @@ def checkout (request):
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'checkout.html', {'products': products, 'preisGesamt': preisGesamt, 'paypalForm': form, 'user': request.user})
+    return render(request, 'checkout.html', {'products': products, 'preisGesamt': preisGesamt, 'paypalForm': form, 'user': request.user, 'versandkosten': VERSAND})
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def create_stripe_checkout_session(request):
+    userId = request.user.id
+    cart = json.loads(request.COOKIES.get("cart", "[]"))
+    products =[]
+    preisGesamt = 0
+    versand = 7
+    for productId in cart:
+        product = Product.objects.get(id=productId)
+        products.append(product)
+        preisGesamt += product.preis + versand
+
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card', 'sepa_debit', 'sofort', 'ideal', 'giropay'],
+        metadata={  
+            "user_id": request.user.id,  # Nutzer-ID übergeben
+            "cart": json.dumps(cart)
+        },
+        line_items=[{
+            'price_data': {
+                'currency': 'eur',
+                'product_data': {
+                    'name': product.titel,
+                    'images': ['https://ec04-145-254-36-25.ngrok-free.app' + product.images.first().image.url]
+                },
+                'unit_amount': int(product.preis * 100),  # 50€ in Cent
+            },
+            'quantity': 1,
+        }
+        for product in products
+        ] + [{
+            'price_data': {
+                'currency': 'eur',
+                'product_data': {
+                    'name': 'Versand',
+                },
+                'unit_amount': int(VERSAND * 100),
+            },
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse("payment_done")),
+        cancel_url='http://127.0.0.1:8000/cancel/',
+    )
+    print(products[0].images.first().image.url)
+    return HttpResponseRedirect(session.url)  # Automatische Weiterleitung zur Stripe-Seite
+
+
+# Stripe Webhook
+@csrf_exempt  # Deaktiviert CSRF-Schutz (weil Stripe keine CSRF-Token sendet)
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.headers.get('Stripe-Signature')
+    
+    try:
+        # Webhook-Event überprüfen und entschlüsseln
+        event = stripe.Webhook.construct_event(payload, sig_header, WEBHOOK_SECRET)
+    
+    except ValueError as e:
+        return JsonResponse({'error': 'Invalid payload'}, status=400)
+    
+    except stripe.error.SignatureVerificationError as e:
+        return JsonResponse({'error': 'Invalid signature'}, status=400)
+
+    # ✅ Erfolgreiches Payment Event verarbeiten
+    if event['type'] == 'checkout.session.completed':
+
+        session = event['data']['object']
+        user_id = session.get('metadata', {}).get('user_id')
+        user = User.objects.get(id = user_id)
+        cart= json.loads(session.get('metadata', {}).get('cart'))
+        cartItems = [
+            Product.objects.get(pk = pid)
+            for pid in cart
+        ]
+        
+        # Transaktionsdetails abrufen
+        invoice_id = session.get('id')
+        email = session.get('customer_email', '')
+        amount = session.get('amount_total', 0) / 100  # Cent in Euro umwandeln
+
+        # 💾 In Datenbank speichern
+        order = Orders.objects.create(
+            invoice=invoice_id,
+            user=user,
+            betrag=amount,
+            status="bezahlt"
+        )
+
+        for product in cartItems:
+            order.produkt.add(product)
+        order.save()
+
+        for id in cart:
+            print("produkt")
+            # Prüfen, ob das Produkt existiert
+            try:
+                product = Product.objects.get(pk=id)  # Produkt abrufen
+                order.produkt.add(product)
+                product.ist_verkauft = True
+                product.save()
+
+            except Product.DoesNotExist:
+                print(f"Fehler: Produkt mit ID {id} nicht gefunden!")
+
+
+        print("success")
+        return JsonResponse({'status': 'success'})
+
+    print("ignore")
+    return JsonResponse({'status': 'ignored'})
+
+def paymentCancel(request):
+    return render(request, "payment_cancel.html")
+
+def agb(request):
+    file_path = os.path.join(settings.BASE_DIR, "myShop", "static", "agb.txt")
+    with open(file_path, "r", encoding="utf-8") as file:
+        text = file.read()
+    htmlText = markdown.markdown(text)
+    
+    return render(request, "agb.html", {'text': htmlText})
+
+def datenschutz(request):
+    file_path = os.path.join(settings.BASE_DIR, "myShop", "static", "datenschutz.txt")
+    with open(file_path, "r", encoding="utf-8") as file:
+        text = file.read()
+    htmlText = markdown.markdown(text)
+    
+    return render(request, "agb.html", {'text': htmlText})
